@@ -1,0 +1,7 @@
+@value makerGreen from './common/colors.css';
+@value makerPink from './common/colors.css';
+* {
+  font-size: 20px;
+  color: makerPink;
+  background-color: makerGreen;
+}
