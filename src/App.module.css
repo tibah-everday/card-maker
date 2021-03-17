@@ -17,10 +17,10 @@
   margin: 0 auto;
   /* background-color: makerGreen; */
   /* color: makerWhite; */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   position: relative;
   top: 50vh;
   transform: translateY(-50%);
