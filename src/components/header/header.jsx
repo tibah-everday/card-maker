@@ -1,12 +1,13 @@
-import React from 'react';
-import styles from './header.module.css';
-import './header.module.css';
+import React,{useEffect} from 'react';
+import { useHistory } from 'react-router';
+
 function Header({onLogout}) {
+    const history = useHistory();
     return (
-        <header className={styles.header}>
-            {true&& <button onClick={onLogout} className={styles.logout}>logout</button>}
-            <img className={styles.logo} src="../.././images/logo.png" alt=""/>
-            <h1 className={styles.title}>Business Card Maker</h1>
+        <header >
+            <img src="../.././images/logo.png" alt=""/>
+            <h1>Business Card Maker</h1>
+            <button onClick={onLogout}>logout</button>
         </header>
     )
 }

@@ -1,23 +1,24 @@
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+// react-router-dom, firebase는 npm으로 설치 완료된 상태
+import React, {useState, useEffect} from 'react';
 import Login from './components/login/login';
 import Maker from './components/maker/maker';
-import styles from './App.module.css';
-
-
+import './app.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 function App({authService}) {
+  
   return (
-    <div className={styles.loginArea}>            
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Login authService={authService} />
-          </Route>
-          <Route path="/maker">
-            <Maker authService={authService}/>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+    <BrowserRouter>
+    <div className="cardMaker">            
+      <Switch>
+        <Route path="/" exact>
+          <Login authService={authService} />
+        </Route>
+        <Route path="/maker">
+          <Maker authService={authService} />
+        </Route>
+      </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 

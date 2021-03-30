@@ -1,0 +1,17 @@
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cardMaker {
+  background-color: grey;
+  width: 100vw;
+  height: 100vh;
+}
+
+.cardMaker > section {
+  background-color: lightgreen;
+  /* margin-top: 20px; */
+}

@@ -1,45 +1,46 @@
-import React,{useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import styles from './login.module.css';
+import './login.css';
 import { useHistory } from 'react-router';
 function Login({authService}) {
-    console.log(authService);
     const history = useHistory();
-    const goToMaker = (userId)=>{
-        console.log("maker로 간다아아앗!");
+    function goToMaker(userId){
         history.push({
-            pathname: '/maker',
-            state:{id:userId}
-        });
-    }
-    function onLogin(e){
-        console.log(e.target.innerHTML);
-        const provider = e.target.innerHTML;
-        authService.login(provider).then(data=>goToMaker(data.user.uid));
-    }
-
-    useEffect(()=>{
-        authService.onAuthChange(user=>{
-            user&& goToMaker(user.uid);
+            pathname:"/maker",
+            state:{id: userId}
         })
+    }
+    useEffect(()=>{
+        console.log("렌더링 된 login내 useeffect발동");
+        authService.onAuthChange((user)=>{
+            user&&goToMaker(user.id);
+        })
+        // 결국 onAuthStateChanged는 addEventListener같은 거임. 맨 첨에 렌더링 될때 인자로 전달한 함수를 등록만 해놓고(state변하면 콜백 실행해라~) 끝!
     })
+    function handleLogin(e){
+        authService.login(e.target.innerHTML).then((data)=>{
+            goToMaker(data.user.uid);
+        });          
+    }
+    
+    
+     
     return (
-        <>
-            <Header/>
-            <div className={styles.login}>
-                <h1>Login</h1>
+        <section className="login">
+            <div className="header">
+                <Header authService={authService}/>
+            </div>
+            <div className="loginArea">
                 <ul>
-                    <li>
-                        <button onClick={onLogin}>Google</button>
-                    </li>
-                    <li>
-                        <button onClick={onLogin}>Github</button>
-                    </li>
+                    <li onClick={handleLogin}>Google</li>
+                    <li>Facebook</li>
                 </ul>
             </div>
-            <Footer/>
-        </>
+            <div className="footer">
+                <Footer />
+            </div>
+        </section>
     )
 }
 
